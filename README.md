@@ -1,2 +1,2 @@
 # ITSchool
-Portofoliu ITSchool
+Portofoliu ITSchool - DevOps
