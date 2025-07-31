@@ -1,0 +1,7 @@
+FROM python:3
+
+COPY mylogging.py app.py
+
+RUN mkdir -p /tmp/logs
+
+CMD ["python", "app.py"]

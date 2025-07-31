@@ -1,0 +1,6 @@
+FROM ubuntu 
+
+COPY hello.sh app.sh
+RUN chmod +x app.sh
+
+CMD ["./app.sh"]
