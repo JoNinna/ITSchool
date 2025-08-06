@@ -1,0 +1,6 @@
+name: ubuntu-vim 
+
+services:
+  tool:
+    build: .
+    command: sh -c "Hello Ninna && sleep Infinity"
