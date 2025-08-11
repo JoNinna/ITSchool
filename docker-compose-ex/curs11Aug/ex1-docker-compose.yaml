@@ -1,0 +1,13 @@
+name: ex1
+
+services:
+    my-nginx:
+        image: nginx:latest
+        container_name: ex1
+        ports:
+            - "8080:80"
+        volumes:
+            - /home/user/my-nginx-content:/usr/share/nginx/html
+        restart: always
+
+# nu mai trebuie definit volumes, pentru ca nu creem un volum, cu facem binding

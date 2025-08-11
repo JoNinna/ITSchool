@@ -1,0 +1,8 @@
+docker volume create my-vol
+docker network create my-net
+
+docker run --name c1 -d --network my-net -v my-vol:/logs alpine sh -c " echo Hello from c1 > /logs/log.txt && sleep Infinity"
+
+docker run --name c2 -d --network my-net -v my-vol:/logs alpine sh -c " ping c1 >> /logs/log.txt && sleep Infinity"
+
+docker run --name webserver -p  8080:80 -v my-vol:/usr/share/nginx/html/ nginx

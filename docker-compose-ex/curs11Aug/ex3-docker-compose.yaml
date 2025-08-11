@@ -1,0 +1,35 @@
+name: ex3
+
+services:
+  container1:
+    image: alpine
+    container_name: c1
+    command: sh -c " echo Hello from c1 > /logs/log.txt && sleep Infinity"
+    volumes: 
+      - my-vol:/logs
+    networks:
+      - my-net
+    restart: always
+  container2:
+    image: alpine
+    container_name: c2
+    command: sh -c " ping c1 >> /logs/log.txt && sleep Infinity"
+    volumes: 
+      - my-vol:/logs
+    networks:
+      - my-net
+    restart: always
+  web-server:
+    image: nginx
+    container_name: webserver
+    volumes: 
+      - my-vol:/usr/share/nginx/html/ 
+    ports:
+      - "8080:80"
+    restart: always
+
+volumes:
+  my-vol: "my-vol"
+
+networks:
+  my-net: {}
