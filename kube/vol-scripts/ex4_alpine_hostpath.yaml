@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: alpine
+    location: local_host
+  name: alpine-ex4-pod
+spec:
+  containers:
+  - command:
+    - sh 
+    - /tmp/scripts/hello.sh
+    image: alpine
+    name: ex4-write
+    volumeMounts:
+    - mountPath: /logs
+      name: loguri
+    - mountPath:  /tmp/scripts/
+      name: scripts
+  - command:
+    - sh
+    - -c
+    - tail -f /logs/log.txt 
+    image: alpine
+    name: ex4-read
+    volumeMounts:
+    - mountPath: /logs
+      name: loguri
+  volumes:
+  - name: loguri
+    emptyDir: {}
+  - name: scripts
+    hostPath: 
+     path: /tmp/scripts/
