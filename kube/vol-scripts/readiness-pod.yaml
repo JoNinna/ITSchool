@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: readiness-pod
+  name: readiness-pod
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - echo "First sleeping" && sleep 15 && touch /tmp/healthy && echo 'I created the file' && sleep Infinity
+    image: busybox
+    name: readiness-container
+    livenessProbe:
+      exec:
+        command:
+          - cat 
+          - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
